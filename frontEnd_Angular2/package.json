@@ -1,0 +1,42 @@
+{
+  "name": "Angular2",
+  "version": "0.0.1",
+  "scripts": {
+    "postinstall": "typings install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "liteprod": "lite-server -c lite-server.json",
+    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "typings": "typings"
+  },
+  "dependencies": {
+    "a2-in-memory-web-api": "~0.1.13",
+    "angular2": "^2.0.0-beta.15",
+    "bower": "^1.7.9",
+    "browser-sync": "^2.12.8",
+    "del": "^2.2.0",
+    "es6-shim": "^0.35.0",
+    "live-server": "^1.0.0",
+    "main-bower-files": "^2.13.0",
+    "ng-annotate": "^1.2.1",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.6",
+    "systemjs": "0.19.26",
+    "systemjs-builder": "^0.15.16",
+    "tslint": "^3.10.2",
+    "wrench": "^1.5.9",
+    "zone.js": "0.6.12"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "lite-server": "^2.2.0",
+    "typescript": "^1.8.10",
+    "typings": "^0.7.12",
+    "fs-extra": "^0.24.0",
+    "globby": "^4.0.0",
+    "lodash": "^4.0.0",
+    "minimatch": "^2.0.10",
+    "q": "^1.4.1"
+  }
+}

@@ -1,0 +1,56 @@
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            Mails inbox
+        </h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Title</th>
+                            <th>Mail to</th>
+                            <th>Date time</th>
+                            <th>Content</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let email of emails" *ngIf="!!email">
+                            <td>{{emails.indexOf(email)}}</td>
+                            <td>{{email.title}}</td>
+                            <td>{{email.mailTo}}</td>
+                            <td>{{email.dateTime}}</td>
+                            <td>{{email.contents}}</td>
+                            <td>
+                                <button (click)="onEditClicked(email)" >Edit</button>
+                                <button (click) ="onDeleteClicked(email.id)" >Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
