@@ -2,6 +2,7 @@ import {Component} from "angular2/core";
 import {EmailService} from "./emailService";
 import {Router} from "angular2/router";
 import {RouteParams} from "angular2/router"
+import {Navigate} from "../common/constant"
 
 @Component({
     selector: "create-email",
@@ -9,11 +10,11 @@ import {RouteParams} from "angular2/router"
 })
 
 export class CreateEmailComponent {
-    public emailService: EmailService;
-    public router: Router;
-    public emailId: string;
+    private emailService: EmailService;
+    private router: Router;
+    private emailId: string;
     public email = {};
-    public isEdit = false;
+    private isEdit = false;
 
     constructor(emailService: EmailService, router: Router, routParams: RouteParams) {
         let self = this;
@@ -38,6 +39,6 @@ export class CreateEmailComponent {
     }
 
     private navigateToEmail(){
-        this.router.navigate(["Emails"])
+        this.router.navigate([Navigate.Emails])
     }
 }

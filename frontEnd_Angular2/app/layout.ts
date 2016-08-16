@@ -2,7 +2,7 @@ import {Component} from "angular2/core";
 import {RouteConfig, RouterOutlet, RouterLink} from "angular2/router";
 import {EmailsComponent} from "./components/emailsComponent";
 import {CreateEmailComponent} from "./components/createEmailComponent";
-import Constant from "./common/constant";
+import {Navigate} from "./common/constant";
 
 @Component({
     selector: "default-layout",
@@ -10,9 +10,9 @@ import Constant from "./common/constant";
     directives: [RouterOutlet, RouterLink]
 })
 @RouteConfig([
-    { path: "/emails", name: Constant.Navigate.Emails, component: EmailsComponent, useAsDefault: true },
-    { path: "/createEmail", name: Constant.Navigate.CreateEmail, component: CreateEmailComponent },
-    { path: "/editEmail/:id", name: Constant.Navigate.EditEmail, component: CreateEmailComponent }
+    { path: "/emails", name: Navigate.Emails, component: EmailsComponent, useAsDefault: true },
+    { path: "/createEmail", name: Navigate.CreateEmail, component: CreateEmailComponent },
+    { path: "/editEmail/:id", name: Navigate.EditEmail, component: CreateEmailComponent }
 ])
 export class DefaultLayout {
 }

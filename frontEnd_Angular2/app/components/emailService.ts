@@ -2,6 +2,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Injectable} from "angular2/core";
 import {Http, Headers} from "angular2/http";
+import {StatusCode} from "../common/constant";
 
 @Injectable()
 export class EmailService {
@@ -67,15 +68,15 @@ export class EmailService {
             });
     }
 
-    private checkResponseDataNoError(statusCode: Number) {
-        if (statusCode === 200)
+    private isValidationResponse(statusCode: Number) {
+        if (statusCode === StatusCode.Susscess)
             return true;
         return false;
     }
 
     private handleDataResponse(object: any) {
         let jsonData = object.json();
-        if (this.checkResponseDataNoError(jsonData.statusCode)) {
+        if (this.isValidationResponse(jsonData.statusCode)) {
             return jsonData.data;
         }
         else {

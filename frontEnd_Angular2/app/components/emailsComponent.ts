@@ -1,6 +1,7 @@
 import {Component} from "angular2/core";
 import {EmailService} from "./emailService";
 import {Router} from "angular2/router";
+import {Navigate} from "../common/constant";
 
 @Component({
     selector: "emails",
@@ -8,9 +9,9 @@ import {Router} from "angular2/router";
 })
 
 export class EmailsComponent {
-    public emails: Array<any>;
-    public router: Router;
-    public emailService: EmailService;
+    private emails: Array<any>;
+    private router: Router;
+    private emailService: EmailService;
 
     constructor(emailService: EmailService, router: Router) {
         this.router = router;
@@ -19,19 +20,19 @@ export class EmailsComponent {
     }
 
     public onEditClicked(email: any) {
-        this.router.navigate(["Edit Email", { id: email.id }]);
+        this.router.navigate([Navigate.EditEmail, { id: email.id }]);
     }
 
     public onDeleteClicked(id: string) {
         let self = this;
-        this.emailService.deleteEmail(id).then(function () {
+        self.emailService.deleteEmail(id).then(function () {
             self.getMails();
         });
     }
 
     private getMails() {
         let self = this;
-        this.emailService.getEmails().then(function (response: any) {
+        self.emailService.getEmails().then(function (response: any) {
             self.emails = response;
         })
     }
