@@ -9,26 +9,25 @@ import {EventManager} from "./eventManager";
 export class EmailService {
     private http: Http;
     private baseUrl: string = "http://localhost:19698/api/";
+    private headers: Headers;
+
     constructor(http: Http) {
+        this.headers = new Headers();
+        this.headers.append("Content-Type", "application/json");
+        this.headers.append("Accept", "application/json");
         this.http = http;
     }
 
-    public getEmails() {
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", "application/json");
+    public getEmails() {       
         let url = this.baseUrl + "emails";
-        return this.http.get(url, { headers: headers })
+        return this.http.get(url, { headers: this.headers })
             .toPromise()
             .then((response: any) => response.json());
     }
 
     public getEmail(id: string) {
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", "application/json");
         let url = this.baseUrl + "emails/" + id;
-        return this.http.get(url, { headers: headers })
+        return this.http.get(url, { headers: this.headers })
             .toPromise()
             .then((response: any) => {
                 return this.handleDataResponse(response);
@@ -36,23 +35,17 @@ export class EmailService {
     }
 
     public deleteEmail(id: string) {
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", "application/json");
         let url = this.baseUrl + "emails/" + id;
-        return this.http.delete(url, { headers: headers }).toPromise()
+        return this.http.delete(url, { headers: this.headers }).toPromise()
             .then((response: any) => {
                 return this.handleDataResponse(response);
             });
     }
 
     public createEmail(email: any) {
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", "application/json");
         let url = this.baseUrl + "emails";
         let dataString: string = JSON.stringify(email);
-        return this.http.post(url, dataString, { headers: headers })
+        return this.http.post(url, dataString, { headers: this.headers })
             .toPromise()
             .then((response: any) => {
                 return this.handleDataResponse(response);
@@ -60,12 +53,9 @@ export class EmailService {
     }
 
     public updateEmail(emailId: string, email: any) {
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", "application/json");
         let url = this.baseUrl + "emails/" + emailId;
         let dataString: string = JSON.stringify(email);
-        return this.http.put(url, dataString, { headers: headers })
+        return this.http.put(url, dataString, { headers: this.headers })
             .toPromise()
             .then((response: any) => {
                 return this.handleDataResponse(response);
