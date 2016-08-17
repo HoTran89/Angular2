@@ -3,6 +3,7 @@ import 'rxjs/Rx';
 import {Injectable} from "angular2/core";
 import {Http, Headers} from "angular2/http";
 import {StatusCode} from "../common/constant";
+import {EventManager} from "./eventManager";
 
 @Injectable()
 export class EmailService {
@@ -39,7 +40,10 @@ export class EmailService {
         headers.append("Content-Type", "application/json");
         headers.append("Accept", "application/json");
         let url = this.baseUrl + "emails/" + id;
-        return this.http.delete(url, { headers: headers }).toPromise();
+        return this.http.delete(url, { headers: headers }).toPromise()
+            .then((response: any) => {
+                return this.handleDataResponse(response);
+            });
     }
 
     public createEmail(email: any) {
@@ -80,9 +84,7 @@ export class EmailService {
             return jsonData.data;
         }
         else {
-            for (let error of jsonData.errors) {
-                console.log(error.msg);
-            }
+            EventManager.getInstance().publish(jsonData.errors);
         }
     }
 }

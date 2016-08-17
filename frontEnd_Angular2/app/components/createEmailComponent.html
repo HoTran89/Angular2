@@ -5,7 +5,7 @@
 
                 <form class="form-horizontal form-label-left" novalidate>
                     <span class="section">New mail</span>
-
+                    <p *ngFor="let error of errors">{{error.msg}}</p>
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Title <span class="required">*</span>
                         </label>
